@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Data Mining Dashboard</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <img
+          alt="Data Mining Logo"
+          src="{{ url_for('static', filename='kadatuan.png') }}"
+        />
+        <h2>Data Mining</h2>
+        <ul>
+          <li>          
+              <a href="/data_selection">
+              <i class="fas fa-database"> </i>
+              Data Selection</a>
+            </a>
+          </li>
+          <li>
+              <a href="/preprocessing">
+              <i class="fas fa-filter"> </i>
+              Preprocessing</a>
+            </a>
+          </li>
+          <li>
+            <a href="/transformation">
+              <i class="fas fa-exchange-alt"> </i>
+              Transformation
+            </a>
+          </li>
+          <li>
+            <a href="/data_mining">
+              <i class="fas fa-chart-line"> </i>
+              Data Mining Dan Evaluasi
+            </a>
+          </li>
+          <li>
+            <a href="/recommendation">
+              <i class="far fa-file"> </i>
+               Rekomendasi Promosi
+            </a>
+          </li>
+        </ul>
+      </div>
+      </div>
+    </div>
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+  </div>
+    <script>
+  </body>
+</html>

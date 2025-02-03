@@ -1,0 +1,68 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="content">
+    <div class="header">
+        <div class="title-card">
+            <h1>Aplikasi Segmentasi Pelanggan Kadatuan Koffie</h1>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for category, message in messages %}
+        <div class="alert {{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <form action="/data_selection" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="Data Transaksi">Upload Data Transaksi:</label>
+            <input type="file" name="Data Transaksi" id="Data Transaksi"><br><br>
+            <label for="Data Kuesioner">Upload Data Kuesioner:</label>
+            <input type="file" name="Data Kuesioner" id="Data Kuesioner"><br><br>
+            <button type="submit">Upload</button>
+        </div>
+    </form>
+
+    <div class="table-container">
+        {% if data_files %}
+        <h2>Uploaded Data</h2>
+        <div class="vertical-cards">
+            {% for key, data in data_files.items() %}
+            <div class="card">
+                <h3>{{ key }}</h3>
+                <div class="scrollable-table">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                {% for col in data.columns %}
+                                <th>{{ col }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for idx, row in data.iterrows() %}
+                            <tr>
+                                <td>{{ idx + 1 }}</td>
+                                {% for cell in row %}
+                                <td>{{ cell }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
